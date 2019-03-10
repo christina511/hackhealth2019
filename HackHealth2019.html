@@ -237,6 +237,44 @@ function w3_close() {
   mySidebar.style.display = "none";
   overlayBg.style.display = "none";
 }
+  
+// FETCH POST REQUEST
+const URL='https://vision.googleapis.com/v1/images:annotate?key=AIzaSyB26DK5_fzH45H53bPePQ4sn0A7XlsNyfo'
+const Data={
+  requests:[
+      {
+        image:{
+          source:{
+            imageUri:
+              "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"
+          }
+        },
+        features:[
+          {
+            type:"LOGO_DETECTION",
+            maxResults:1
+          }
+        ]
+      }
+    ]
+}
+const Data2=
+  "{\r\n  \"requests\":[\r\n    {\r\n      \"image\":{\r\n        \"source\":{\r\n          \"imageUri\":\r\n            \"https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png\"\r\n        }\r\n      },\r\n      \"features\":[\r\n        {\r\n          \"type\":\"LOGO_DETECTION\",\r\n          \"maxResults\":1\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}"
+
+//optional parameters
+const otherPram={
+  headers:{
+    "content-type":"application/json; charset=UTF-8"
+  },
+  body:Data2,
+  method:"POST"
+};
+
+fetch(URL,otherPram)
+.then(data=>{return data.json()})
+.then(res=>{console.log(res)})
+.catch(error=>console.log(error))
+
 </script>
 
 </body>
